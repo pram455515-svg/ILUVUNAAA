@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Anniversary 💖</title>
+  <link rel="preconnect" href="https://googleapis.com">
+  <link rel="preconnect" href="https://gstatic.com" crossorigin>
+  <link href="https://googleapis.com/css2?family=Prompt:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Prompt', sans-serif;
+    }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #fbeaf0 0%, #f7d6e0 100%);
+      overflow: hidden;
+      position: relative;
+    }
+    .card {
+      background-color: #ffffff;
+      width: 90%;
+      max-width: 540px;
+      min-height: 460px;
+      padding: 3rem 2.5rem;
+      border-radius: 35px;
+      box-shadow: 0 15px 35px rgba(255, 182, 193, 0.3);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.5s ease;
+      z-index: 10;
+    }
+    .card.pink-bg {
+      background-color: #ffccd5;
+      box-shadow: 0 15px 35px rgba(255, 77, 109, 0.25);
+    }
+    .step {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .img-container {
+      position: relative;
+      margin-bottom: 1.5rem;
+      display: inline-block;
+    }
+    .cartoon-img {
+      width: 130px;
+      height: 130px;
+      object-fit: contain;
+    }
+    .float-anim {
+      animation: floatUpDown 3s ease-in-out infinite;
+    }
+    .dance-anim {
+      animation: happyDance 1.2s ease-in-out infinite;
+    }
+    @keyframes floatUpDown {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+    @keyframes happyDance {
+      0% { transform: scale(1) rotate(0deg); }
+      25% { transform: scale(1.05) rotate(-4deg); }
+      50% { transform: scale(1) rotate(0deg); }
+      75% { transform: scale(1.05) rotate(4deg); }
+      100% { transform: scale(1) rotate(0deg); }
+    }
+    .icon-bubble {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background-color: #ff4d6d;
+      color: white;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      font-weight: bold;
+    }
+    .main-title {
+      color: #333333;
+      font-size: 1.7rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .loading-title {
+      color: #ff4d6d;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .subtitle {
+      color: #666666;
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+    }
+    .highlight {
+      color: #ff4d6d;
+      font-weight: 600;
+    }
+    .btn-group {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      min-height: 50px;
+    }
+    .btn {
+      padding: 0.7rem 3.5rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(255, 77, 109, 0.2);
+    }
+    .btn-next {
+      background-color: #ff4d6d;
+      color: #ffffff;
+      transition: transform 0.2s, background-color 0.2s;
+    }
+    .btn-next:hover {
+      transform: scale(1.05);
+      background-color: #c9184a;
+    }
+    .progress-container {
+      width: 85%;
+      height: 18px;
+      background-color: #fff0f3;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid #ffccd5;
+    }
+    .progress-bar {
+      width: 0%;
+      height: 100%;
+      background-color: #ff4d6d;
+      border-radius: 20px;
+      transition: width 0.1s linear;
+    }
+    .success-title {
+      color: #ff4d6d;
+      font-size: 1.9rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .success-desc {
+      color: #4a4a4a;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      text-align: center;
+      word-break: break-word;
+    }
+    .hidden {
+      display: none !important;
+    }
+    .heart-bg-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 5;
+    }
+    .floating-heart {
+      position: absolute;
+      font-size: 1.5rem;
+      animation: floatUp 3s ease-in forwards;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+      10% { opacity: 0.8; }
+      90% { opacity: 0.4; }
+      100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="heart-bg-container" id="heartBgContainer"></div>
+
+  <div class="card" id="mainCard">
+    <!-- STEP 1 -->
+    <div id="step1" class="step">
+      <div class="img-container">
+        <span class="icon-bubble">✨</span>
+        <img src="https://i.pinimg.com/originals/44/a8/96/44a896afa57f58b10e1f67ba194e729f.gif" alt="My Melody Anniversary" class="cartoon-img float-anim">
+      </div>
+      <h1 class="main-title">Happy Anniversary</h1>
+      <p class="subtitle">สุขสันต์วันครบรอบนะอ้วนน วันนี้มีพี่มีอะไรจะบอกด้วยแหละ...</p>
+      <div class="btn-group">
+        <button id="nextBtn" class="btn btn-next">อ่านต่อสิ 💕</button>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div id="step2" class="step hidden">
+      <div class="img-container">
+        <img src="https://giffiles.alphacoders.com/164/164100.gif" alt="My Melody Loading" class="cartoon-img float-anim">
+      </div>
+      <h2 class="loading-title">Loading......</h2>
+      <p class="subtitle highlight">แปปนะกำลังโหลดใจเย็นนนนนน...</p>
+      <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div id="step3" class="step hidden">
+      <div class="img-container happy-box">
+        <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/698fbf1b-678c-4c57-8bee-452904723566/dmgwook-3df08908-bb67-4c4b-a0f9-98cd4bc2c0fd.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiIvZi82OThmYmYxYi02NzhjLTRjNTctOGJlZS00NTI5MDQ3MjM1NjYvZG1nd29vay0zZGYwODkwOC1iYjY3LTRjNGItYTBmOS05OGNkNGJjMmMwZmQuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.043eW08QPIDqvpH7sfF39G7ZuMg_rWXgoLOlTGyyfMU" alt="My Melody Happy" class="cartoon-img dance-anim">
+      </div>
+      <h1 class="success-title">ขอบคุณที่อยู่ด้วยกันนะกับพี่นะ</h1>
+      <p class="success-desc">
+        ขอบคุณสำหรับทุกๆวันที่ผ่านมาเลยนะ ขอบคุณที่คอยเป็นรอยยิ้มเป็นความสบายใจแ เค้าอาจจะไม่ใช่คนที่ดีที่สุดหรือเก่งที่สุดแต่สัญญาว่าจะตั้งใจรักและดูแลเธอให้ดีที่สุดอยู่กับพี่แบบนี้ไปนานๆเลยนะครับ พี่รักแกนะ 🧸❤️
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const nextBtn = document.getElementById('nextBtn');
+    const mainCard = document.getElementById('mainCard');
+    const step1 = document.getElementById('step1');
+    const step2 = document.getElementById('step2');
+    const step3 = document.getElementById('step3');
+    const progressBar = document.getElementById('progressBar');
+    const heartBgContainer = document.getElementById('heartBgContainer');
+
+    nextBtn.addEventListener('click', () => {
+      step1.classList.add('hidden');
+      step2.classList.remove('hidden');
+      startLoading();
+    });
+
+    function startLoading() {
+      let width = 0;
+      const loadingInterval = setInterval(() => {
+        if (width >= 100) {
+          clearInterval(loadingInterval);
+          showAnniversaryPage();
+        } else {
+          width += 2;
+          progressBar.style.width = width + '%';
+        }
+      }, 40);
+    }
+
+    function showAnniversaryPage() {
+      step2.classList.add('hidden');
+      step3.classList.remove('hidden');
+      mainCard.classList.add('pink-bg');
+      setInterval(createFloatingHeart, 250);
+    }
+
+    function createFloatingHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'floating-heart';
+      const hearts = ['❤️', '💖', '💕', '🌹', '✨', '🌸'];
+      heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = Math.random() * 2 + 2 + 's';
+      heartBgContainer.appendChild(heart);
+      heart.addEventListener('animationend', () => {
+        heart.remove();
+      });
+    }
+  </script>
+</body>
+</html>
